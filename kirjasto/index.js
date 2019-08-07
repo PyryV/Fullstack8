@@ -84,12 +84,21 @@ let books = [
   },
 ]
 
+const bookCount = (author) => {
+  var count = 0
+  for(var i=0; i<books.length; i++) {
+    if(books[i].author === author) count++
+  }
+  return count
+}
+
 const typeDefs = gql`
   type Query {
     hello: String!
     bookCount: Int!
     authorCount: Int!
     allBooks: [Book!]
+    allAuthors: [Author!]
   }
 
   type Book {
@@ -98,6 +107,11 @@ const typeDefs = gql`
     author: String
     id: ID!
     genres: [String]
+  }
+
+  type Author {
+    name: String!
+    bookCount: Int!
   }
 `
 
